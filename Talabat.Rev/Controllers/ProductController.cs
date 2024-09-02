@@ -31,7 +31,8 @@ namespace Talabat.Rev.Controllers
             _mapper = mapper;
         }
 
-       // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [ResponseCache(Duration = 600)]
         [HttpGet]
         public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetAllProduct([FromQuery]ProductSpecPramas productSpecPramas) 
         {
@@ -45,7 +46,7 @@ namespace Talabat.Rev.Controllers
             return Ok(new Pagination<ProductToReturnDto>(productSpecPramas.PageSize ,productSpecPramas.pageindex , count , producttoreturnDto));
         }
 
-
+       
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
