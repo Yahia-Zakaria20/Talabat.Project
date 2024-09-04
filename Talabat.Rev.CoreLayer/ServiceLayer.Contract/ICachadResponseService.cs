@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StackExchange.Redis;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,9 @@ namespace Talabat.Rev.CoreLayer.ServiceLayer.Contract
 {
     public interface ICachadResponseService
     {
-        Task CachadResponse(string key, object value, TimeSpan time);
+        Task CachadResponseAsync(string key, object value, TimeSpan time);
 
-        Task<string?> GetCachadResponse(string key);
+        Task<string?> GetCachadResponseAsync(string key);
 
 
     }

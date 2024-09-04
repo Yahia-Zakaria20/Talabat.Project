@@ -28,7 +28,7 @@ namespace Talabat.Rev.Extentions
             webApplicationBuilder.AddScoped<IUnitOfWork, UnitOfwork>();
             webApplicationBuilder.AddScoped<IPaymentServices, PaymentServices>();
             webApplicationBuilder.AddScoped<IAuthServices, AuthServices>();
-
+            webApplicationBuilder.AddSingleton<ICachadResponseService, CachadResponseService>();
             webApplicationBuilder.AddScoped<IOrderServices,OrderServices>();
 
             webApplicationBuilder.AddScoped<IBasketRepositry, BasketRepositry>();
