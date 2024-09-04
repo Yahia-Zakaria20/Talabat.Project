@@ -10,10 +10,12 @@ using Talabat.Rev.CoreLayer.Entites;
 using Talabat.Rev.CoreLayer.RepositoryLayer.Contract;
 using Talabat.Rev.CoreLayer.ServiceLayer.Contract;
 using Talabat.Rev.CoreLayer.Specifications.ProductSpecifications;
+using Talabat.Rev.CustomAttribute;
 using Talabat.Rev.Dto;
 using Talabat.Rev.Errors;
 using Talabat.Rev.Helper;
 using Talabat.Rev.RepositoryLayer;
+using Talabat.Rev.ServiceLayer;
 
 namespace Talabat.Rev.Controllers
 {
@@ -32,8 +34,8 @@ namespace Talabat.Rev.Controllers
         }
 
         // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        [ResponseCache(Duration = 600)]
-        [HttpGet]
+        [CachadAttribute(600)]
+        [HttpGet]  // get : api/Product
         public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetAllProduct([FromQuery]ProductSpecPramas productSpecPramas) 
         {
           
@@ -48,6 +50,7 @@ namespace Talabat.Rev.Controllers
 
        
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+        [CachadAttribute(600)]
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
         {
@@ -58,7 +61,7 @@ namespace Talabat.Rev.Controllers
         }
 
 
-
+        [CachadAttribute(600)]
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetBrands() 
         {
@@ -67,7 +70,7 @@ namespace Talabat.Rev.Controllers
         }
 
 
-
+        [CachadAttribute(600)]
         [HttpGet("categories")]
         public async Task<ActionResult<IReadOnlyList<ProductCategory>>> GetCategory()
         {
