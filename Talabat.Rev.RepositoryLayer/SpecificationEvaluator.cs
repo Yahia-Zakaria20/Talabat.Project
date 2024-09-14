@@ -9,9 +9,8 @@ using Talabat.Rev.CoreLayer.Specifications;
 
 namespace Talabat.Rev.RepositoryLayer
 {
-    public static class SpecificationEvaluator<T>where T : BaseEntite
+    public static class SpecificationEvaluator<T> where T : BaseEntite
     {
-
         public static IQueryable<T> GetQuary(IQueryable<T> Dbset, ISpecifications<T> specifications) 
         {
 
@@ -32,6 +31,7 @@ namespace Talabat.Rev.RepositoryLayer
 
 
             Quary = specifications.Includs.Aggregate(Quary, (CurrentQuary, IncludExprssion) => CurrentQuary.Include(IncludExprssion));
+
 
             return Quary;
         }

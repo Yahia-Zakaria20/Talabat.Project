@@ -23,9 +23,14 @@ namespace Talabat.Rev.RepositoryLayer.Data
         //public IGenericRepositry<OrderItem> OrderItemRepo  { get ; set ; }
 
         private readonly Hashtable _Repos;
+
+        public IWishListRepositry WishlistRepo { get ; set ; }
+
         public UnitOfwork(StoreDbcontext storeDbcontext)
         {
             _storeDbcontext = storeDbcontext;
+
+            WishlistRepo = new WishListRepositry(storeDbcontext);
 
             _Repos  =new  Hashtable();
 

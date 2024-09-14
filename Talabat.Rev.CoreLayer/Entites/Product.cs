@@ -8,8 +8,6 @@ namespace Talabat.Rev.CoreLayer.Entites
 {
     public class Product : BaseEntite
 	{
-        
-
         public string Name { get; set; }
 
         public string Description { get; set; }

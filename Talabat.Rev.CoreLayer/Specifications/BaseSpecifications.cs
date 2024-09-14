@@ -15,11 +15,13 @@ namespace Talabat.Rev.CoreLayer.Specifications
         public Expression<Func<T, bool>> Criteria { get; set; } = null;
         public Expression<Func<T, object>> OrderBy { get ; set ; } = null;
         public Expression<Func<T, object>> OrderByDesc { get ; set ; } = null;
-       
+  
+     
 
         public bool ispagenation { get; set ; }
         public int Take { get ; set ; }
         public int skip { get ; set ; }
+    
 
         public BaseSpecifications()
         {

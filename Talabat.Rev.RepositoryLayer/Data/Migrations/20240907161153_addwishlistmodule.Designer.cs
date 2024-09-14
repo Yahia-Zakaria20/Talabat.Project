@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Talabat.Rev.RepositoryLayer.Data;
 
@@ -11,9 +12,10 @@ using Talabat.Rev.RepositoryLayer.Data;
 namespace Talabat.Rev.RepositoryLayer.Data.Migrations
 {
     [DbContext(typeof(StoreDbcontext))]
-    partial class StroeDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20240907161153_addwishlistmodule")]
+    partial class addwishlistmodule
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

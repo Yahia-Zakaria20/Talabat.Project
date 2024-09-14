@@ -59,18 +59,26 @@ namespace Talabat.Rev.Controllers
 
             if (_userManager.FindByNameAsync(dto.Username).Result is  null)
             {
-                var user = new AppUser()
+                var NewUser = new AppUser()
                 {
                     Email = dto.Email,
                     DisplayName = dto.Displayname,
                     UserName = dto.Username,
                     PhoneNumber = dto.phonenumber,
                 };
-
-                var result = await _userManager.CreateAsync(user, dto.Password);
+                var result = await _userManager.CreateAsync(NewUser, dto.Password);
                 if (!result.Succeeded)
+                {
                     return BadRequest(new ApiResponse(400));
-                return Ok(new UserDto() { Email = user.Email, DisplayName = user.DisplayName, Token = await _authServices.GenerateTokenAsync(user, _userManager) });
+                }
+                else 
+                {
+                  //  var EmailConfirmationCode =await _userManager.GenerateEmailConfirmationTokenAsync(NewUser);
+
+                    return Ok(new UserDto() { Email = NewUser.Email, DisplayName = NewUser.DisplayName/*,EmailConfirmationCode = EmailConfirmationCode*/ ,Token = await _authServices.GenerateTokenAsync(NewUser, _userManager) });
+                }
+
+               
             }
             return BadRequest(new ApiValidationErrorResponse() { Errors = new string[] {"User Name is Exsist"} });
         }
@@ -97,20 +105,38 @@ namespace Talabat.Rev.Controllers
 
             address.Id = user.Address.Id;
 
-            user.Address = address; // change Stata Obj
+            user.Address = address; // change Obj Stata for user address 
 
-           var Result = await _userManager.UpdateAsync(user);
+            var Result = await _userManager.UpdateAsync(user);
 
             if (!Result.Succeeded)
                 return BadRequest(new ApiResponse(400));
             return Ok(dto);
         }
+       
+        [HttpPut("ConfirmEmail/{code}")]
+        public async Task<ActionResult> ConfirmEmail(string useremail ,string code) 
+        {
+         
+            var user = await _userManager.FindByEmailAsync(useremail);
+            if(user is null)
+                return Unauthorized();
 
+          var result  =  _userManager.ConfirmEmailAsync(user, code);
+            if (result.IsCompleted)
+                return Ok();
+            return BadRequest(new ApiResponse(400));
+        }
 
         [HttpGet("CheckEmail")]
         public async Task<ActionResult<bool>> checkEmailExist(string email) 
         {
             return await _userManager.FindByEmailAsync(email) is not null;
         }
+
+
+        //Confirmation email
+        // update user info 
+        
     }
 }

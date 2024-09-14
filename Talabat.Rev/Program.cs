@@ -41,6 +41,8 @@ namespace Talabat.Rev
 
             webApplicationBuilder.Services.AddDbContext<IdentityStoreDbContext>(options =>
                options.UseSqlServer(webApplicationBuilder.Configuration.GetConnectionString("Identity")));
+
+
             webApplicationBuilder.Services.AddCors(config => 
             {
                 config.AddPolicy("Policy01", p => 

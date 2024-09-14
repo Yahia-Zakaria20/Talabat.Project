@@ -18,6 +18,9 @@ namespace Talabat.Rev.CoreLayer.Specifications
 
         Expression<Func<T, object>> OrderByDesc { get; set; }
 
+     
+     
+
         bool ispagenation { get; set; }
 
        int Take { get; set; }

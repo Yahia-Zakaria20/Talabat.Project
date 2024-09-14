@@ -14,6 +14,8 @@ namespace Talabat.Rev.Helper
                .ForMember(P => P.CategoryName, O => O.MapFrom(P => P.ProductCategory.Name))
                .ForMember(P => P.CategoryName, O => O.MapFrom<ProductPictureUrlResolver>());
 
+           
+
             CreateMap<CustomerBasketDto, CustomerBasket>();
             CreateMap<BasketItemsDto, BasketItems>();
             CreateMap<shippingaddreesDto,Talabat.Rev.CoreLayer.Entites.OrderAggregate.Address>();

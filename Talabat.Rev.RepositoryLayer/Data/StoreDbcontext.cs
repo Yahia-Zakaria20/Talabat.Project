@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Talabat.Rev.CoreLayer.Entites;
 using Talabat.Rev.CoreLayer.Entites.OrderAggregate;
+using Talabat.Rev.RepositoryLayer.Data.Configrations;
 
 namespace Talabat.Rev.RepositoryLayer.Data
 {
@@ -34,6 +35,9 @@ namespace Talabat.Rev.RepositoryLayer.Data
         public DbSet<OrderItem> OrderItems { get; set; }
 
         public DbSet<DeliveryMethod> DeliveryMethods { get; set; }
+
+        public DbSet<WishlistItem> WishlistItems { get; set; }
+
 
     }
 }

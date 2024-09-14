@@ -25,16 +25,22 @@ namespace Talabat.Rev.Extentions
         {
             //  webApplicationBuilder.AddScoped(typeof(IGenericRepositry<>), typeof(GenericRepositry<>));
 
-            webApplicationBuilder.AddScoped<IUnitOfWork, UnitOfwork>();
+            webApplicationBuilder.AddScoped<IUnitOfWork, UnitOfwork>();  
+
             webApplicationBuilder.AddScoped<IPaymentServices, PaymentServices>();
+
             webApplicationBuilder.AddScoped<IAuthServices, AuthServices>();
+
             webApplicationBuilder.AddSingleton<ICachadResponseService, CachadResponseService>();
+
             webApplicationBuilder.AddScoped<IOrderServices,OrderServices>();
 
             webApplicationBuilder.AddScoped<IBasketRepositry, BasketRepositry>();
+
             webApplicationBuilder.AddScoped<IProductServices,ProductServices>();
 
             webApplicationBuilder.AddTransient<ProductPictureUrlResolver>();
+
             webApplicationBuilder.AddTransient<OrderStatusResolver>();
 
             webApplicationBuilder.AddTransient<ProductitemorderPictureURlResolver>();
@@ -82,6 +88,7 @@ namespace Talabat.Rev.Extentions
             webApplicationBuilder.AddIdentity<AppUser, IdentityRole>(config =>
             {
                 config.User.RequireUniqueEmail = true;
+                config.SignIn.RequireConfirmedEmail = true;
             })
               .AddEntityFrameworkStores<IdentityStoreDbContext>();
 

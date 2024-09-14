@@ -8,5 +8,8 @@
 
         public string Token { get; set; }
 
+        public string EmailConfirmationCode { get; set; }
+
+
     }
 }
